@@ -12,9 +12,16 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 
 @Module(includes = [AppModule::class])
 class NetworkModule {
+
+
+    @AppScope
+    @Provides
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.tag(NetworkModule::class.java.simpleName).d(message) }).setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @AppScope
     @Provides
@@ -30,15 +37,16 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideHttpClient(requestInterceptor: Interceptor): OkHttpClient =
+    internal fun provideHttpClient(requestInterceptor: Interceptor, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(requestInterceptor)
             .build()
 
     @Provides
     @AppScope
     internal fun provideGson(): Gson =
-        GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
+        GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create()
 
     @AppScope
     @Provides
