@@ -11,6 +11,10 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val repository: MediaRepository) : ViewModel() {
 
+    companion object{
+        const val emptyStringAscii = "%02%03"
+    }
+
     lateinit var liveFeed: LiveData<List<MediaItem>>
     internal var loadingINdicator: MutableLiveData<Boolean> = MutableLiveData(false)
 
@@ -20,12 +24,11 @@ class MainViewModel @Inject constructor(private val repository: MediaRepository)
 
     fun subscribe() {
         this.liveFeed = this.repository.getMediaFeed()
-        this.repository.fetchMediaFromRemote("Star", "AU", "movie")
+        this.repository.fetchMediaFromRemote(emptyStringAscii, "AU", "all")
     }
 
-    fun searchMedia(term: String) {
+    fun searchMedia(term: String?) {
         loadingINdicator.value = true
-        this.repository.fetchMediaFromRemote(term, "AU", "movie")
+        this.repository.fetchMediaFromRemote(term ?: emptyStringAscii, "AU", "all")
     }
-
 }

@@ -43,7 +43,6 @@ class MainActivity : BaseActivity() {
         super.onStart()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.adapter = adapter
 
         btnSearch.setOnClickListener {

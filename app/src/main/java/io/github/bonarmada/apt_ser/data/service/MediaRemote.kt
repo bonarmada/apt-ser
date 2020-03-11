@@ -10,7 +10,7 @@ interface MediaRemote {
 
     @GET("/search")
     fun getAll(
-        @Query("term") term: String,
+        @Query("term", encoded = true) term: String,
         @Query("country") country: String,
         @Query("media") media: String
     ):  Single<Response<MediaResponseData>>
