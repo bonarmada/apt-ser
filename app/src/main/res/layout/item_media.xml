@@ -47,43 +47,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:textColor="@color/itemColorPrimary"
-                    android:text="@{String.valueOf(item.trackName)}"
-                    android:textSize="20sp"
-                    android:maxLines="1"
                     android:gravity="left"
-                    app:layout_constraintRight_toRightOf="parent"
+                    android:maxLines="1"
+                    android:text="@{String.valueOf(item.trackName)}"
+                    android:textColor="@color/itemColorPrimary"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/artistName"
                     app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     tools:text="A Star is born" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/artistName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(item.artistName)}"
-                    android:textSize="19sp"
+                    android:gravity="left"
                     android:maxLines="1"
                     android:singleLine="true"
+                    android:text="@{String.valueOf(item.artistName)}"
 
                     android:textColor="@color/colorAccent"
+                    android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    tools:text="Lady Gaga"
-                    android:gravity="left"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Lady Gaga" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/shortDescription"
                     android:layout_width="match_parent"
-                    android:textColor="@color/itemColorCaption"
-                    tools:text="Pop | 2918"
-                    android:textSize="14sp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.primaryGenreName + ` | ` + UtilKt.getYearString(item.releaseDate)}"
+                    android:text="@{item.primaryGenreName +  ' ' + '\u2022' + ' ' + UtilKt.getYearString(item.releaseDate)}"
+                    android:textColor="@color/itemColorCaption"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/artistName" />
+                    app:layout_constraintTop_toBottomOf="@id/artistName"
+                    tools:text="Pop \u2022 2918" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.github.florent37.shapeofview.shapes.RoundRectView>
@@ -105,9 +105,9 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/artwork"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
-                android:background="@color/athensGray"
                 android:layout_height="match_parent"
+                android:background="@color/athensGray"
+                android:scaleType="fitXY"
                 app:imageUrl="@{item.artworkUrl100}" />
         </com.github.florent37.shapeofview.shapes.RoundRectView>
 

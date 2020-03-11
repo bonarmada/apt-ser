@@ -2,9 +2,6 @@ package io.github.bonarmada.apt_ser.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
-import io.github.bonarmada.apt_ser.ui.util.DateConverter
 import java.util.*
 
 @Entity(tableName = "media_table")
