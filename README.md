@@ -14,7 +14,7 @@ App is purely written in kotlin, Used MVVM architectural pattern
 
 
 #### UI annd Design
-Functional, intuitive and aestethically pleasing design. Originally planned to be minimal and neutral but later on decided to choose my own palette, followed Material Design guidelines such as emphasis on vital information.
+Functional, intuitive and aestethically pleasing design. Originally planned to be minimal and neutral but later on decided to choose my own palette, followed Material Design guidelines such as emphasis on vital information, proper spacing, proper use of shapes and white spaces.
 
 
 #### Dependencies
