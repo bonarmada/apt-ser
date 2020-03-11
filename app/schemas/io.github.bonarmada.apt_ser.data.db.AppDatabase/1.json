@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f36a4186b76292e8b300dac8696c0e33",
+    "identityHash": "7578e29a49ae47423448d7a608ee5e89",
     "entities": [
       {
         "tableName": "media_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`trackId` INTEGER NOT NULL, `trackName` TEXT NOT NULL, `artistName` TEXT NOT NULL, `artworkUrl100` TEXT NOT NULL, `trackPrice` REAL NOT NULL, `currency` TEXT NOT NULL, `country` TEXT NOT NULL, `primaryGenreName` TEXT NOT NULL, `shortDescription` TEXT NOT NULL, `longDescription` TEXT NOT NULL, `trackTimeMillis` INTEGER NOT NULL, PRIMARY KEY(`trackId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`trackId` INTEGER NOT NULL, `trackName` TEXT NOT NULL, `artistName` TEXT NOT NULL, `artworkUrl100` TEXT NOT NULL, `trackPrice` REAL NOT NULL, `currency` TEXT NOT NULL, `country` TEXT NOT NULL, `primaryGenreName` TEXT NOT NULL, `shortDescription` TEXT NOT NULL, `longDescription` TEXT NOT NULL, `trackTimeMillis` INTEGER NOT NULL, `releaseDate` TEXT NOT NULL, PRIMARY KEY(`trackId`))",
         "fields": [
           {
             "fieldPath": "trackId",
@@ -73,6 +73,12 @@
             "columnName": "trackTimeMillis",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "releaseDate",
+            "columnName": "releaseDate",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -88,7 +94,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f36a4186b76292e8b300dac8696c0e33')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7578e29a49ae47423448d7a608ee5e89')"
     ]
   }
 }

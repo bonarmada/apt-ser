@@ -1,5 +1,7 @@
 package io.github.bonarmada.apt_ser.data.model
 
+import java.util.*
+
 data class Media(
     val trackId: Long = 0,
     val trackName: String = "",
@@ -11,5 +13,6 @@ data class Media(
     val primaryGenreName: String = "",
     val shortDescription: String = "",
     val longDescription: String = "",
-    val trackTimeMillis: Long = 0
+    val trackTimeMillis: Long = 0,
+    val releaseDate: Date = Date()
 )

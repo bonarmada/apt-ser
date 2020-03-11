@@ -2,6 +2,8 @@ package io.github.bonarmada.apt_ser.ui.util
 
 import io.github.bonarmada.apt_ser.data.model.Media
 import io.github.bonarmada.apt_ser.data.model.MediaDataModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun MediaDataModel.toModel() = Media(
     this.trackId,
@@ -14,7 +16,8 @@ fun MediaDataModel.toModel() = Media(
     this.primaryGenreName,
     this.shortDescription,
     this.longDescription,
-    this.trackTimeMillis
+    this.trackTimeMillis,
+    this.releaseDate
 )
 
 fun Media.toDataModel() = MediaDataModel(
@@ -28,5 +31,9 @@ fun Media.toDataModel() = MediaDataModel(
     this.primaryGenreName,
     this.shortDescription,
     this.longDescription,
-    this.trackTimeMillis
+    this.trackTimeMillis,
+    this.releaseDate
 )
+
+fun Double.toCurrencyFormat() = String.format("$ %.2f", this)
+fun Date.getYearString() = SimpleDateFormat("yyyy").format(this);

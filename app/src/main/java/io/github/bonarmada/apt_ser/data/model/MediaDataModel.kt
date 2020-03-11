@@ -2,6 +2,10 @@ package io.github.bonarmada.apt_ser.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import io.github.bonarmada.apt_ser.ui.util.DateConverter
+import java.util.*
 
 @Entity(tableName = "media_table")
 data class MediaDataModel(
@@ -16,5 +20,6 @@ data class MediaDataModel(
     val primaryGenreName: String = "",
     val shortDescription: String = "",
     val longDescription: String = "",
-    val trackTimeMillis: Long = 0
+    val trackTimeMillis: Long = 0,
+    val releaseDate: Date = Date()
 )
