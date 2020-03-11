@@ -4,7 +4,6 @@
     android:layout_marginHorizontal="20dp">
 
     <data>
-
         <import type="io.github.bonarmada.apt_ser.ui.util.UtilKt" />
 
         <variable
@@ -78,7 +77,7 @@
                     android:id="@+id/shortDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{item.primaryGenreName +  ' ' + '\u2022' + ' ' + UtilKt.getYearString(item.releaseDate)}"
+                    android:text="@{item.primaryGenreName}"
                     android:textColor="@color/itemColorCaption"
                     android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"

@@ -1,5 +1,8 @@
 package io.github.bonarmada.apt_ser.ui.util
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import com.google.gson.Gson
 import io.github.bonarmada.apt_ser.data.model.Media
 import io.github.bonarmada.apt_ser.data.model.MediaDataModel
 import java.text.SimpleDateFormat
@@ -16,9 +19,10 @@ fun MediaDataModel.toModel() = Media(
     this.primaryGenreName,
     this.shortDescription,
     this.longDescription,
-    this.trackTimeMillis,
-    this.releaseDate
+    this.trackTimeMillis
 )
+
+fun MediaDataModel.toGson() = Gson().toJson(this)
 
 fun Media.toDataModel() = MediaDataModel(
     this.trackId,
@@ -31,9 +35,7 @@ fun Media.toDataModel() = MediaDataModel(
     this.primaryGenreName,
     this.shortDescription,
     this.longDescription,
-    this.trackTimeMillis,
-    this.releaseDate
+    this.trackTimeMillis
 )
-
 fun Double.toCurrencyFormat() = String.format("$ %.2f", this)
-fun Date.getYearString() = SimpleDateFormat("yyyy").format(this);
+

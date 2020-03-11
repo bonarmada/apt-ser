@@ -10,7 +10,7 @@ import io.github.bonarmada.apt_ser.data.model.MediaDataModel
 @Dao
 interface MediaDao {
 
-    @Query("SELECT * from media_table ORDER BY trackId ASC")
+    @Query("SELECT * from media_table")
     fun getAllMedia(): LiveData<List<MediaDataModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -18,4 +18,10 @@ interface MediaDao {
 
     @Query("DELETE from media_table")
     fun clear()
+
+
+    @Query("SELECT * from media_table WHERE trackId = :trackId LIMIT 1")
+    fun getMedia(trackId: Int): LiveData<MediaDataModel>
+
+
 } 

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="20dp">
+
+    <data>
+
+        <import type="io.github.bonarmada.apt_ser.ui.util.UtilKt" />
+
+        <variable
+            name="item"
+            type="io.github.bonarmada.apt_ser.data.model.Media" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shape_roundRect_borderWidth="1dp"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+            </View>
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@id/artwork"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:elevation="6dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shape_roundRect_borderWidth="1dp"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/artwork"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/athensGray"
+                android:scaleType="fitXY"
+                app:imageUrl="@{item.artworkUrl100}" />
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+        <LinearLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:outlineProvider="none"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artwork">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trackName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:gravity="left"
+                android:maxLines="1"
+                android:text="@{String.valueOf(item.trackName)}"
+                android:textColor="@color/itemColorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/artwork"
+                tools:text="A Star is born" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/artistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{String.valueOf(item.artistName)}"
+                android:textColor="@color/colorAccent"
+                android:textSize="19sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trackName"
+                tools:text="Lady Gaga" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/shortDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{item.primaryGenreName}"
+                android:textColor="@color/itemColorCaption"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/artistName"
+                tools:text="Pop \u2022 2918" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/longDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:foregroundGravity="top"
+            android:elevation="3dp"
+            android:gravity="top"
+            android:text="@{item.longDescription}"
+            android:textColor="@color/itemColorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/priceContainer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerContainer"  />
+
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/priceContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:shape_roundRect_borderWidth="1dp"
+            app:shape_roundRect_bottomLeftRadius="15dp"
+            app:shape_roundRect_bottomRightRadius="15dp"
+            app:shape_roundRect_topLeftRadius="15dp"
+            app:shape_roundRect_topRightRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="@{UtilKt.toCurrencyFormat(item.trackPrice)}"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

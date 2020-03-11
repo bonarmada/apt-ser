@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import io.github.bonarmada.apt_ser.di.ViewModelFactory
 import io.github.bonarmada.apt_ser.di.ViewModelKey
 import io.github.bonarmada.apt_ser.di.scope.AppScope
+import io.github.bonarmada.apt_ser.ui.detail.DetailViewModel
 import io.github.bonarmada.apt_ser.view.ui.main.MainViewModel
 
 
@@ -19,6 +20,12 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+
+    @AppScope
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    abstract fun bindDetailViewModel(detailViewModel: DetailViewModel): ViewModel
 
     // Factory
     @AppScope

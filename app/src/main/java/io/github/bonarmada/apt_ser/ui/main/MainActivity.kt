@@ -1,7 +1,10 @@
 package io.github.bonarmada.apt_ser.view.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
@@ -12,12 +15,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
+import com.xwray.groupie.OnItemClickListener
 import io.github.bonarmada.apt_ser.AptApplication
 import io.github.bonarmada.apt_ser.R
+import io.github.bonarmada.apt_ser.data.repo.MediaRepository
+import io.github.bonarmada.apt_ser.databinding.ItemMediaBinding
 import io.github.bonarmada.apt_ser.ui.base.BaseActivity
+import io.github.bonarmada.apt_ser.ui.detail.DetailActivity
+import io.github.bonarmada.apt_ser.ui.detail.DetailActivity.Companion.EXTRA_MEDIA_DATA
 import io.github.bonarmada.apt_ser.ui.util.MediaType
+import io.github.bonarmada.apt_ser.ui.util.Prefs
+import io.github.bonarmada.apt_ser.ui.util.toGson
+import io.github.bonarmada.apt_ser.ui.viewitems.MediaItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_media.*
+import javax.inject.Inject
 
+
+//class MainActivity @Inject constructor(private val prefs: Prefs) : BaseActivity() {
 class MainActivity : BaseActivity() {
 
     private lateinit var viewModel: MainViewModel
@@ -43,13 +59,30 @@ class MainActivity : BaseActivity() {
 
         // Loading indicator change listener/observer.
         viewModel.loadingINdicator.observe(this, Observer {
-            Log.e("loadingINdicator", it.toString())
             recyclerViewContainer.isRefreshing = it
         })
     }
 
+    override fun onResume() {
+        if ((prefs.cachedMedia) != null){
+            startActivity(Intent(this, DetailActivity::class.java))
+        }
+
+        prefs.lastActivity = this::class.java.simpleName
+        super.onResume()
+    }
+
     override fun onStart() {
         super.onStart()
+
+        // Check cached data, undone session
+        when (prefs.lastActivity) {
+            DetailActivity::class.java.simpleName -> {
+
+            }
+            else -> {
+            }
+        }
 
         setupTabLayout()
         setupRecyclerView()
@@ -104,9 +137,15 @@ class MainActivity : BaseActivity() {
                 else -> false
             }
         }
-//        btnSearch.setOnClickListener {
-//            refreshFeed()
-//        }
+
+        adapter.setOnItemClickListener { item, _ ->
+            (item as MediaItem).let { mediaItem ->
+                val intent = Intent(this, DetailActivity::class.java).apply {
+                    putExtra(EXTRA_MEDIA_DATA, mediaItem.media.toGson())
+                }
+                startActivity(intent)
+            }
+        }
     }
 
     private fun refreshFeed() =

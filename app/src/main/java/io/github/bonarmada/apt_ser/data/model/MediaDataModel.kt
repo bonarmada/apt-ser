@@ -17,6 +17,5 @@ data class MediaDataModel(
     val primaryGenreName: String = "",
     val shortDescription: String = "",
     val longDescription: String = "",
-    val trackTimeMillis: Long = 0,
-    val releaseDate: Date = Date()
+    val trackTimeMillis: Long = 0
 )

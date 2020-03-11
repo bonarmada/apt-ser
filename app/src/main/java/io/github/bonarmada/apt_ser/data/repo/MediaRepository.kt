@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import io.github.bonarmada.apt_ser.data.service.MediaRemote
 import io.github.bonarmada.apt_ser.data.db.MediaDao
+import io.github.bonarmada.apt_ser.data.model.Media
+import io.github.bonarmada.apt_ser.data.model.MediaDataModel
 import io.github.bonarmada.apt_ser.ui.util.toDataModel
+import io.github.bonarmada.apt_ser.ui.util.toModel
 import io.github.bonarmada.apt_ser.ui.viewitems.MediaItem
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -45,5 +48,8 @@ class MediaRepository @Inject internal constructor(
             }
         }
 
-
+    fun getMedia(trackId: Int): LiveData<Media> =
+        Transformations.map(dao.getMedia(trackId)){
+            it.toModel()
+        }
 }
